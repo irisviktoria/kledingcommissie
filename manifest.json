@@ -1,0 +1,18 @@
+{
+  "name": "Kledingcommissie Brabantsedag",
+  "short_name": "Kledingcommissie",
+  "description": "Referentieapp voor de kledingcommissie - De Meesterproef voor Bakkers",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5eedc",
+  "theme_color": "#4a3520",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
