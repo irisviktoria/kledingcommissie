@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kledingcommissie – Brabantsedag 2026</title>
+<link rel="icon" type="image/png" href="imgs/icon.png">
+<link rel="apple-touch-icon" href="imgs/icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kledingcommissie">
+<meta name="theme-color" content="#4a3520">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bruin-donker: #4a3520;
+    --bruin-midden: #7a5c35;
+    --beige: #c8a96e;
+    --beige-licht: #e8d5b0;
+    --creme: #f5eedc;
+    --achtergrond: #faf6ee;
+    --tekst: #2d2318;
+    --lijn: #ddd0b3;
+    --geel-accent: #c8922a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--achtergrond);
+    color: var(--tekst);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--bruin-donker);
+    color: var(--creme);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+  }
+  .logo-area h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--beige-licht);
+    line-height: 1.2;
+  }
+  .logo-area p {
+    font-size: 0.7rem;
+    color: #bba880;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .header-logo {
+    height: 44px;
+    width: 44px;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+
+  /* NAV */
+  nav {
+    background: #3a2810;
+    border-top: 1px solid #5a3e20;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-tabs {
+    display: flex;
+    white-space: nowrap;
+    padding: 0 6px;
+  }
+  .nav-tab {
+    padding: 9px 14px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #9a8060;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .nav-tab.active {
+    color: var(--beige-licht);
+    border-bottom-color: var(--beige);
+  }
+  .nav-tab:hover { color: var(--creme); }
+
+  /* SECTIONS */
+  .section { display: none; padding: 18px 14px 50px; max-width: 480px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* HERO */
+  .hero {
+    background: var(--bruin-donker);
+    border-radius: 12px;
+    padding: 0;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-logo {
+    width: 100%;
+    display: block;
+    max-height: 180px;
+    object-fit: contain;
+    background: #c8a86e;
+    padding: 20px;
+  }
+  .hero-body {
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .hero-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--beige-licht);
+    margin-bottom: 6px;
+  }
+  .hero-body .subtitle {
+    color: #bba880;
+    font-size: 0.83rem;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--bruin-donker);
+    margin-bottom: 4px;
+  }
+  .section-intro {
+    color: #6b5535;
+    font-size: 0.83rem;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--lijn);
+  }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(74,53,32,0.08);
+    border: 1px solid var(--lijn);
+  }
+  .card-img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+  }
+  .card-body { padding: 13px 15px; }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.97rem;
+    color: var(--bruin-donker);
+    margin-bottom: 5px;
+  }
+  .card-text { font-size: 0.81rem; color: #5a4428; line-height: 1.55; }
+
+  /* INFOBOX */
+  .infobox {
+    background: white;
+    border-radius: 10px;
+    padding: 13px 15px;
+    margin-bottom: 13px;
+    border-left: 4px solid var(--beige);
+    font-size: 0.82rem;
+    color: #4a3520;
+    line-height: 1.55;
+    box-shadow: 0 1px 4px rgba(74,53,32,0.06);
+  }
+  .infobox strong {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--bruin-donker);
+    margin-bottom: 5px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* STOF GRID */
+  .stof-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .stof-card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--lijn);
+    background: white;
+  }
+  .stof-kleur { height: 65px; }
+  .stof-info { padding: 8px 10px; }
+  .stof-naam { font-weight: 600; font-size: 0.8rem; color: var(--bruin-donker); margin-bottom: 2px; }
+  .stof-detail { font-size: 0.71rem; color: #7a5c35; }
+  .stof-link {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.71rem;
+    color: var(--geel-accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* OUTFIT GRID */
+  .outfit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .outfit-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--lijn);
+    box-shadow: 0 1px 5px rgba(74,53,32,0.06);
+  }
+  .outfit-card img {
+    width: 100%;
+    height: 195px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  .outfit-label {
+    padding: 7px 10px;
+    font-size: 0.73rem;
+    font-weight: 600;
+    color: #5a4428;
+    text-align: center;
+  }
+
+  /* CHECKLIST */
+  .checklist {
+    list-style: none;
+    background: white;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    border: 1px solid var(--lijn);
+  }
+  .checklist li {
+    padding: 7px 0;
+    font-size: 0.81rem;
+    border-bottom: 1px solid #f0e8d5;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon { color: #6a8a4a; flex-shrink: 0; margin-top: 1px; }
+  .cross-icon { color: #a03030; flex-shrink: 0; margin-top: 1px; }
+
+  /* PILL TABS */
+  .tabs-inner {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .pill-tab {
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid var(--lijn);
+    background: white;
+    color: #7a5c35;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .pill-tab.active {
+    background: var(--bruin-donker);
+    color: var(--beige-licht);
+    border-color: var(--bruin-donker);
+  }
+  .acc-panel { display: none; }
+  .acc-panel.active { display: block; }
+
+  /* COLOR BADGES */
+  .kleur-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px 3px 5px;
+    border-radius: 20px;
+    font-size: 0.73rem;
+    font-weight: 600;
+    margin: 3px 3px 3px 0;
+    background: var(--creme);
+    border: 1px solid var(--lijn);
+  }
+  .kleur-dot {
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.12);
+    flex-shrink: 0;
+  }
+
+  /* COLOR STRIP */
+  .color-strip {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 8px 0;
+    height: 22px;
+  }
+  .color-strip div { flex: 1; }
+
+  /* BORDUURSEL CHIPS */
+  .borduursel-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .borduursel-chip {
+    background: var(--creme);
+    border: 1px solid var(--lijn);
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 0.74rem;
+    color: #5a4428;
+  }
+
+  /* WAGEN IMAGE */
+  .wagen-img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 14px;
+    border: 1px solid var(--lijn);
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--lijn);
+    margin: 18px 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-area">
+      <h1>Kledingcommissie</h1>
+      <p>Brabantsedag · De Meesterproef</p>
+    </div>
+    <img id="img-logo-vereniging" src="" class="header-logo" alt="Ge wit 't oit noit nie">
+  </div>
+  <nav>
+    <div class="nav-tabs">
+      <div class="nav-tab active" onclick="showTab('home', this)">Home</div>
+      <div class="nav-tab" onclick="showTab('spelers', this)">Spelers</div>
+      <div class="nav-tab" onclick="showTab('schorten', this)">Schorten</div>
+      <div class="nav-tab" onclick="showTab('accessoires', this)">Accessoires</div>
+      <div class="nav-tab" onclick="showTab('borduursels', this)">Borduursels</div>
+    </div>
+  </nav>
+</header>
+
+<!-- HOME -->
+<section class="section active" id="tab-home">
+  <div class="hero">
+    <img id="img-logo-wagen" src="" class="hero-logo" alt="De Meesterproef voor Bakkers logo">
+    <div class="hero-body">
+      <h2>De Meesterproef voor Bakkers</h2>
+      <p class="subtitle">~100 bakkers · Worstenbrood · Gilde</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Overzicht</h2>
+  <p class="section-intro">Referentieapp voor de kledingcommissie. Gebruik de tabs om per onderdeel de richtlijnen en foto's te bekijken.</p>
+
+  <div class="infobox">
+    <strong>🎭 Het concept</strong>
+    Elke bakker draagt een eigen broek + blouse (zelf aanleveren), een schort van de commissie, en een handgemaakt accessoire. De accessoires worden in drie kleuren en drie vormen gemaakt, met optionele borduursels.
+  </div>
+
+  <div class="infobox" style="border-left-color: #a07840;">
+    <strong>📋 Taken kledingcommissie</strong>
+    ✔ Schorten naaien (lang canvas + kort katoen)<br>
+    ✔ Accessoires maken (cape, sjaal+theedoek, sjerp)<br>
+    ✔ Aangeleverde kleding spelers keuren op kleur + stijl<br>
+    ✔ Borduurwerk verwerken op accessoires
+  </div>
+
+  <div style="margin-bottom: 8px; font-weight: 600; font-size: 0.82rem; color: #6b5535; text-transform: uppercase; letter-spacing: 0.06em;">Kleuren palet accessoires</div>
+  <div class="color-strip">
+    <div style="background:#8B2222;"></div>
+    <div style="background:#1a4a2e;"></div>
+    <div style="background:#3a5068;"></div>
+    <div style="background:#c8922a;"></div>
+  </div>
+  <div style="display:flex; gap:5px; margin-top:8px; flex-wrap:wrap;">
+    <span class="kleur-badge"><span class="kleur-dot" style="background:#8B2222;"></span>Rood</span>
+    <span class="kleur-badge"><span class="kleur-dot" style="background:#1a4a2e;"></span>Groen</span>
+    <span class="kleur-badge"><span class="kleur-dot" style="background:#3a5068;"></span>Blauw</span>
+    <span class="kleur-badge"><span class="kleur-dot" style="background:#c8922a;"></span>Geel accent</span>
+  </div>
+
+  <hr class="divider">
+  <div style="font-weight:600; font-size:0.82rem; color:#6b5535; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;">De wagen dit jaar</div>
+  <img id="img-wagen-ontwerp" src="" class="wagen-img" alt="Wagenontwerp De Meesterproef">
+</section>
+
+<!-- SPELERS OUTFIT -->
+<section class="section" id="tab-spelers">
+  <h2 class="section-title">Spelers outfit</h2>
+  <p class="section-intro">Spelers op de wagen leveren hun broek en blouse/overhemd zelf aan. Gebruik deze referentiefotos bij het keuren.</p>
+
+  <div class="infobox">
+    <strong>✅ Richtlijnen blouse / overhemd</strong>
+    Wit, crème of ecru. Bij voorkeur linnen of een stof die er niet te nieuw uitziet. Mag off-white zijn – we kunnen altijd nog met bloem vervuilen voor het bakkers-effect.
+  </div>
+
+  <div style="font-weight:600; font-size:0.8rem; color:#6b5535; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:10px;">Blouse / Overhemd</div>
+  <div class="outfit-grid">
+    <div class="outfit-card">
+      <img id="img-blouse-dames" src="" alt="Dames blouse creme">
+      <div class="outfit-label">Dames – linnen blouse</div>
+    </div>
+    <div class="outfit-card">
+      <img id="img-blouse-heren" src="" alt="Heren overhemd">
+      <div class="outfit-label">Heren – linnen overhemd</div>
+    </div>
+  </div>
+
+  <ul class="checklist">
+    <li><span class="check-icon">✓</span> Wit / crème / ecru</li>
+    <li><span class="check-icon">✓</span> Linnen of katoen, geen synthetische look</li>
+    <li><span class="check-icon">✓</span> Losjes passend, pijpen mogen opgerold</li>
+    <li><span class="cross-icon">✗</span> Geen felle kleuren of prints</li>
+    <li><span class="cross-icon">✗</span> Geen strak/sportief materiaal</li>
+  </ul>
+
+  <hr class="divider">
+
+  <div style="font-weight:600; font-size:0.8rem; color:#6b5535; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:10px;">Broek / Pantalon</div>
+
+  <div class="infobox">
+    <strong>✅ Richtlijnen broek</strong>
+    Grijs, donkergrijs, donkerblauw of wit. Mag ook bakkersruit of subtiel streepje. Iets losser model zodat pijpen opgestroopt kunnen worden. Geen spijkerbroek, geen legging.
+  </div>
+
+  <div class="outfit-grid">
+    <div class="outfit-card">
+      <img id="img-broek-dames-grijs" src="" alt="Dames pantalon grijs">
+      <div class="outfit-label">Dames – grijs</div>
+    </div>
+    <div class="outfit-card">
+      <img id="img-broek-heren-grijs" src="" alt="Heren broek donkergrijs">
+      <div class="outfit-label">Heren – donkergrijs</div>
+    </div>
+    <div class="outfit-card">
+      <img id="img-broek-bakkersruit" src="" alt="Bakkersruitje broek">
+      <div class="outfit-label">Bakkersruit optie</div>
+    </div>
+    <div class="outfit-card">
+      <img id="img-broek-blauw" src="" alt="Blauwe broek">
+      <div class="outfit-label">Donkerblauw</div>
+    </div>
+  </div>
+
+  <ul class="checklist">
+    <li><span class="check-icon">✓</span> Grijs / wit / donkerblauw</li>
+    <li><span class="check-icon">✓</span> Bakkersruit of subtiel streepje toegestaan</li>
+    <li><span class="check-icon">✓</span> Losse pasvorm, pijpen kunnen opgestroopt</li>
+    <li><span class="cross-icon">✗</span> Geen spijkerbroek (jeans)</li>
+    <li><span class="cross-icon">✗</span> Geen legging of joggingbroek</li>
+  </ul>
+</section>
+
+<!-- SCHORTEN -->
+<section class="section" id="tab-schorten">
+  <h2 class="section-title">Schorten</h2>
+  <p class="section-intro">Iedereen krijgt een schort van de commissie. Lang model (canvas) of kort model (katoen), afhankelijk van de toewijzing.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px;">
+    <div class="card">
+      <img id="img-schort-lang" src="" class="card-img" alt="Lang schort">
+      <div class="card-body">
+        <div class="card-title">Lang schort</div>
+        <div class="card-text">Canvas stof · Taupe/zand · Met halslus en tailleband</div>
+      </div>
+    </div>
+    <div class="card">
+      <img id="img-schort-kort" src="" class="card-img" alt="Kort schort">
+      <div class="card-body">
+        <div class="card-title">Kort schort</div>
+        <div class="card-text">Katoen stof · Taupe/zand · Taillemodel met zakje</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; font-size:0.97rem; margin-bottom:10px; color:var(--bruin-donker);">Stoffen voor de schorten</h3>
+
+  <div class="stof-grid">
+    <div class="stof-card">
+      <div class="stof-kleur" style="background:#8b7355;"></div>
+      <div class="stof-info">
+        <div class="stof-naam">Canvas Taupe</div>
+        <div class="stof-detail">Lang schort · Stevig</div>
+        <a class="stof-link" href="https://www.stoffenshop.eu/canvas-stof/product/canvas-taupe" target="_blank">→ stoffenshop.eu</a>
+      </div>
+    </div>
+    <div class="stof-card">
+      <div class="stof-kleur" style="background:#c4b49a;"></div>
+      <div class="stof-info">
+        <div class="stof-naam">Katoen Zand Uni</div>
+        <div class="stof-detail">Kort schort · Soepel</div>
+        <a class="stof-link" href="https://www.stoffenshop.eu/katoenen-stof-uni/product/katoen-zand-uni-100" target="_blank">→ stoffenshop.eu</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img id="img-schort-groen" src="" class="card-img" alt="Prototype schort met bloem">
+    <div class="card-body">
+      <div class="card-title">Prototype – bebloeming</div>
+      <div class="card-text">We gaan de kleding 'vies' maken met bloem, handafdrukken, vegen etc.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESSOIRES -->
+<section class="section" id="tab-accessoires">
+  <h2 class="section-title">Accessoires</h2>
+  <p class="section-intro">3 vormen × 3 kleuren (+ geel accent). Willekeurig samengesteld per bakker.</p>
+
+  <div class="infobox">
+    <strong>🎨 Kleuren accessoires (Texturé/Burlington)</strong>
+    Blauw, rood of groen – altijd met geel accent. Niet elk type in één kleur; de combinaties worden random verdeeld.
+    <div class="borduursel-row" style="margin-top:10px;">
+      <span class="borduursel-chip" style="background:#d4e0ea; border-color:#3a5068; color:#3a5068;">● Blauw</span>
+      <span class="borduursel-chip" style="background:#f0d8d8; border-color:#8B2222; color:#8B2222;">● Rood</span>
+      <span class="borduursel-chip" style="background:#d0e6d8; border-color:#1a4a2e; color:#1a4a2e;">● Groen</span>
+      <span class="borduursel-chip" style="background:#f5e8c4; border-color:#c8922a; color:#c8922a;">+ Geel accent</span>
+    </div>
+  </div>
+
+  <div class="tabs-inner">
+    <div class="pill-tab active" onclick="showAcc('cape', this)">Cape / Mantel</div>
+    <div class="pill-tab" onclick="showAcc('sjaal', this)">Sjaal + Theedoek</div>
+    <div class="pill-tab" onclick="showAcc('sjerp', this)">Sjerp</div>
+  </div>
+
+  <!-- CAPE -->
+  <div class="acc-panel active" id="acc-cape">
+    <div class="card">
+      <img id="img-acc-alle3" src="" class="card-img" alt="Alle 3 accessoires">
+      <div class="card-body">
+        <div class="card-title">Cape / Mantel</div>
+        <div class="card-text">Korte cape over de schouders, vastgebonden bij de hals met geel lint of koord.</div>
+      </div>
+    </div>
+    <div class="infobox">
+      <strong>Stoffen voor de cape</strong>
+      Texturé/Terlenka flessengroen, denim-blauw of brique (rood) met geel accent.<br><br>
+      <a href="https://www.stoffenshop.eu/texture-burlington/product/texture-flessen-groen" target="_blank" style="color:var(--geel-accent); font-weight:600; text-decoration:none;">→ Flessengroen</a> &nbsp;
+      <a href="https://www.stoffenshop.eu/texture-burlington/product/texture-denim" target="_blank" style="color:var(--geel-accent); font-weight:600; text-decoration:none;">→ Denim</a> &nbsp;
+      <a href="https://www.stoffenshop.eu/texture-burlington/product/texture-brique" target="_blank" style="color:var(--geel-accent); font-weight:600; text-decoration:none;">→ Brique</a> &nbsp;
+      <a href="https://www.stoffenshop.eu/texture-burlington/product/textureterlenka-oker" target="_blank" style="color:var(--geel-accent); font-weight:600; text-decoration:none;">→ Oker (accent)</a>
+    </div>
+  </div>
+
+  <!-- SJAAL -->
+  <div class="acc-panel" id="acc-sjaal">
+    <div class="card">
+      <img id="img-sjaal-rood" src="" class="card-img" alt="Rode sjaal met theedoek">
+      <div class="card-body">
+        <div class="card-title">Sjaal + Theedoek</div>
+        <div class="card-text">Driehoekige sjaal om de hals, theedoek in het schort gestoken. Gele bies als accent langs de rand.</div>
+      </div>
+    </div>
+    <div class="card">
+      <img id="img-sjaal-croissant" src="" class="card-img" alt="Sjaal met croissant borduursel">
+      <div class="card-body">
+        <div class="card-title">Voorbeeld met borduursel</div>
+        <div class="card-text">Rode sjaal met goud geborduurde croissant. De sjaal kan ook zonder borduursel.</div>
+      </div>
+    </div>
+    <div class="infobox">
+      <strong>Let op bij keuren</strong>
+      Theedoek steekt netjes in het schort. Sjaal hangt losjes of zit gevouwen om de nek.
+    </div>
+  </div>
+
+  <!-- SJERP -->
+  <div class="acc-panel" id="acc-sjerp">
+    <div class="card">
+      <img id="img-sjerpen" src="" class="card-img" alt="Sjerpen rood en groen">
+      <div class="card-body">
+        <div class="card-title">Sjerp</div>
+        <div class="card-text">Breed lint schuin over het lichaam gedragen, van schouder naar heup. Groen met geel, of rood met geel.</div>
+      </div>
+    </div>
+    <div class="infobox">
+      <strong>Draagwijze sjerp</strong>
+      Van linkerschouder naar rechterheup (of andersom). Knoop of strik aan de zijkant. Gele strook wat gefrommeld vast naaien zodat het een smallere 'golvende' strook op het groen is.
+    </div>
+  </div>
+</section>
+
+<!-- BORDUURSELS -->
+<section class="section" id="tab-borduursels">
+  <h2 class="section-title">Borduursels</h2>
+  <p class="section-intro">Op sommige accessoires wordt een borduursel aangebracht. 3 motieven, altijd in goud/oker garen.</p>
+
+  <div class="card">
+    <img id="img-sjaal-croissant2" src="" class="card-img" alt="Croissant borduursel">
+    <div class="card-body">
+      <div class="card-title">🥐 Croissant</div>
+      <div class="card-text">Goud geborduurde croissant. Kan op de sjaal of cape worden aangebracht.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img id="img-borduursel-korenaar" src="" class="card-img" alt="Korenaar borduursel">
+    <div class="card-body">
+      <div class="card-title">🌾 Korenaar</div>
+      <div class="card-text">Gouden korenaren op accessoire stof. Prachtig eindresultaat.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img id="img-acc-pretzel" src="" class="card-img" alt="Pretzel borduursel op cape">
+    <div class="card-body">
+      <div class="card-title">🥨 Pretzel</div>
+      <div class="card-text">Oranje/goud geborduurde pretzel op de achterkant van de blauwe cape.</div>
+    </div>
+  </div>
+
+  <div class="infobox">
+    <strong>📌 Borduursel planning</strong>
+    Niet elke bakker krijgt een borduursel. Verdeling wordt later bepaald. Borduursels worden altijd in oker/goud garen uitgevoerd, passend bij de gele accentkleur van het accessoire.
+    <div class="borduursel-row">
+      <span class="borduursel-chip">🥐 Croissant</span>
+      <span class="borduursel-chip">🌾 Korenaar</span>
+      <span class="borduursel-chip">🥨 Pretzel</span>
+    </div>
+  </div>
+</section>
+
+<script>
+
+const BASE = "imgs/";
+const IMAGES = {
+  schort_groen: BASE+"schort_groen.jpg",
+  borduursel_korenaar: BASE+"borduursel_korenaar.jpg",
+  accessoires_alle3: BASE+"accessoires_alle3.jpg",
+  sjaal_rood_voor: BASE+"sjaal_rood_voor.jpg",
+  sjerpen_rood_groen: BASE+"sjerpen_rood_groen.jpg",
+  accessoires_borduursel: BASE+"accessoires_borduursel.jpg",
+  schort_kort: BASE+"schort_kort.jpg",
+  schort_lang: BASE+"schort_lang.jpg",
+  sjaal_croissant: BASE+"sjaal_croissant.jpg",
+  blouse_dames: BASE+"blouse_dames.png",
+  blouse_heren: BASE+"blouse_heren.png",
+  broek_dames_grijs: BASE+"broek_dames_grijs.png",
+  broek_heren_grijs: BASE+"broek_heren_grijs.png",
+  broek_bakkersruit: BASE+"broek_bakkersruit.png",
+  broek_blauw: BASE+"broek_blauw.png",
+  logo_vereniging: BASE+"logo_vereniging.png",
+  logo_wagen: BASE+"logo_wagen.png",
+  wagen_ontwerp: BASE+"wagen_ontwerp.jpg",
+};
+
+
+function setImg(id, key) {
+  const el = document.getElementById(id);
+  if (el && IMAGES[key]) el.src = IMAGES[key];
+}
+
+setImg('img-logo-vereniging', 'logo_vereniging');
+setImg('img-logo-wagen', 'logo_wagen');
+setImg('img-wagen-ontwerp', 'wagen_ontwerp');
+setImg('img-blouse-dames', 'blouse_dames');
+setImg('img-blouse-heren', 'blouse_heren');
+setImg('img-broek-dames-grijs', 'broek_dames_grijs');
+setImg('img-broek-heren-grijs', 'broek_heren_grijs');
+setImg('img-broek-bakkersruit', 'broek_bakkersruit');
+setImg('img-broek-blauw', 'broek_blauw');
+setImg('img-schort-kort', 'schort_lang');
+setImg('img-schort-lang', 'schort_kort');
+setImg('img-schort-groen', 'schort_groen');
+setImg('img-acc-alle3', 'accessoires_alle3');
+setImg('img-sjaal-rood', 'sjaal_rood_voor');
+setImg('img-sjaal-croissant', 'sjaal_croissant');
+setImg('img-sjaal-croissant2', 'sjaal_croissant');
+setImg('img-sjerpen', 'sjerpen_rood_groen');
+setImg('img-acc-pretzel', 'accessoires_borduursel');
+setImg('img-borduursel-korenaar', 'borduursel_korenaar');
+
+function showTab(name, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  el.classList.add('active');
+}
+
+function showAcc(name, el) {
+  document.querySelectorAll('.acc-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.pill-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('acc-' + name).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+
+</body>
+</html>
